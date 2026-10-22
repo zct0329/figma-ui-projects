@@ -61,3 +61,14 @@ export function attachAttachment(gun,part,from){
  if(gun.attachments.some(a=>a.attachmentSlot===slot))return {ok:false,reason:'先拆下当前槽位配件'};
  from.items.splice(from.items.indexOf(part),1);part.attachmentSlot=slot;gun.attachments.push(part);return {ok:true};
 }
+
+// A discarded equipped bag remains a top-level ground container, never an item nested in a bag.
+export function dropContainer(container,ground,equipment=container.equipment){
+ if(!equipment||!['backpack','rig'].includes(equipment.type)||container.equipment?.uid!==equipment.uid)return {ok:false,reason:'容器装备来源无效'};
+ const key='drop-'+equipment.uid,id='ground-'+equipment.uid;
+ if(ground.gear[key]||ground.containers.some(c=>c.id===id))return {ok:false,reason:'这个容器已在地面'};
+ const dropped={...container,id,label:equipment.name,equipment,items:container.items,regions:container.regions,dropped:true};
+ ground.gear[key]=equipment;ground.containers.push(dropped);
+ container.equipment=null;container.items=[];container.regions=[];
+ return {ok:true,container:dropped,key};
+}

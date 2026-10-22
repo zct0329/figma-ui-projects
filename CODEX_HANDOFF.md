@@ -10,7 +10,7 @@
 - `dist/weapon-visual.js`：按 attachments 树绘制二维组合枪图；`weapon-parts.js` 为新增公开配件图与固定元数据。`visualPart` 仅改变旧模拟配件展示，不得修改其物理尺寸、价格、数量或初始归属。
 - `dist/catalog.json`、`dist/assets/`：原有 89 种物品与新增配件原图。`operator.png` 是原创静态人物立绘，不是游戏模型，也没有动态换装。
 - `dist/sound-effects.json`：`move: null`。当前没有确认的原版物资转移音源，保持静音。严禁恢复持续合成搜索声或把合成音称为原版。
-- Node.js 18+、Python 3，无应用 npm 依赖。`npm test` 运行 11 个测试。`python3 -m http.server 8000 --bind 0.0.0.0 --directory dist` 启动。
+- Node.js 18+、Python 3，无应用 npm 依赖。`npm test` 运行 13 个测试。`python3 -m http.server 8000 --bind 0.0.0.0 --directory dist` 启动。
 - 浏览器测试：`node tests/browser-smoke.cjs`、`node tests/interaction-regression.cjs`，依赖环境已有 Playwright 与 `/usr/bin/chromium`。回归会测试实际鼠标拖动、取消、尺寸、选择、窗口释放、物品守恒、配件外观与静音。
 
 ## 需要保留的行为
@@ -18,7 +18,7 @@
 1. 搜索必须转圈并逐件揭示，切换和刷新保留进度，已发现物品可提前拿走。
 2. 胸挂真实独立分格；安全箱限制类型；失败放置不可复制或吞掉物品。
 3. 拖拽按来源像素尺寸跟随鼠标，禁止浏览器文本选中和图片原生拖动；R 旋转，Esc/失焦/取消清理指针捕获和预览。装备位尺寸不能当成每格尺寸乘以物品宽高。
-4. 头盔、护甲、枪械可拖换和拖入格子。背包/胸挂需搜完后携内容交换，暂不支持套包。
+4. 头盔、护甲、枪械可拖换和拖入格子。背包/胸挂需搜完后携内容交换，拖到空白游戏背景可连同内容物丢到地面，空装备位支持拖回地面容器重新穿戴；暂不支持套包。
 5. 枪械附件必须参与价值、重量、存档和归属；拆装不产生额外收益。旧存档不可凭空加装配件。
 6. 新增收益排除初始物资，包含弹药堆叠和拆下的初始配件。
 7. 界面声音尚未完全复刻；配件外观是二维组合，不是完整三维模型/原版兼容表。不要声称逐像素或百分百还原。
@@ -29,3 +29,5 @@
 用户已授权 GitHub Pages。源代码位于 `main`，`scripts/publish-pages.sh` 运行测试并将 dist 导出至 gh-pages；Pages 选择 gh-pages、/(root)。首次网站已实际上线，网址是 https://zct0329.github.io/figma-ui-projects/ 。之后每次更新仍需推送、等待新的 Pages 部署完成，再检查线上页面与资源版本，不能只凭推送声称生效。
 
 当前聊天环境浏览器对公网代理证书可能不信任；不要关闭 TLS 校验。HTTPS curl 可用于确认响应及文件摘要，本地 Chromium 验证相同构建的交互。若修复浏览器信任，应使用平台提供的 CA，而不是忽略证书错误。
+
+地面容器：engine.dropContainer 将穿戴容器移为 source[5] 下的独立顶层 dropped 容器，gear 用 drop-<uid> 作为唯一所有权键；未穿戴的 player container 保持固定 id，但 regions/items 为空。地面与穿戴包交换后，地面 key/id 必须同步为交换下来的包 UID，避免重复丢弃冲突。禁止把内容物清空或复制到裸包上。右键已揭示枪械直接 gunPanel；地面行为回归见 tests/ground-and-gunsmith.cjs。
