@@ -46,9 +46,7 @@ python3 -m http.server 8000 --bind 0.0.0.0 --directory dist
 发布文件位于 `gh-pages` 分支根目录（由 `dist/` 导出）。仓库 Settings → Pages → Build and deployment，选择 **Deploy from a branch**，分支 **gh-pages**、目录 **/(root)**，保存。页面首次构建完成后，GitHub 会在该设置页给出真实站点链接。后续发布：
 
 ```sh
-npm test
-git subtree split --prefix dist -b pages-release
-git push origin pages-release:gh-pages
+bash scripts/publish-pages.sh
 ```
 
 只有线上 HTTP 和浏览器检查成功，才算完成在线试玩验证。
