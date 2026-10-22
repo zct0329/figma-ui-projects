@@ -1,0 +1,7 @@
+绝密航天 · 理包模拟器
+玩家自制交互练习作品，非官方产品。
+
+物品图像、名称：腾讯《三角洲行动》公开物品资料（playerhub.df.qq.com）。图像与游戏标识的权利归各自权利人所有。
+物品描述、尺寸、参考价格、容器分格参考：panedioic / delta-force-loot-simulator（Y1yan），https://github.com/panedioic/delta-force-loot-simulator ，Apache License 2.0。
+本作对公开资料做了筛选、字段转换、格位映射及模拟调整。玩法、交互与界面为本项目重新实现。
+模拟价格是固定资料快照，并非实时交易行价格；本作未连接游戏账号、服务器或交易系统。
