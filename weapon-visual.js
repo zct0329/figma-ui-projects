@@ -1,4 +1,4 @@
-import {visualPart} from './weapon-parts.js?v=20261022-drag2';
+import {visualPart} from './weapon-parts.js?v=20261022-ground3';
 // A 2D assembly preview using the item's current attachment tree, not a new item image.
 const crop={optic:{'13110000051':[41,1,291,191],'13110000056':[24,55,312,81]},muzzle:[13,50,343,92],grip:[23,12,20,44],stock:[7,12,50,43],magazine:[12,4,33,56],laser:[6,15,51,32]};
 function partImage(part,box){const [x,y,w,h]=box,slot=part.attachmentSlot;let bounds=part.visualBounds||(slot==='optic'?crop.optic[part.id]:crop[slot]);if(!bounds)return `<image href="${escape(part.img)}" x="${x}" y="${y}" width="${w}" height="${h}"/>`;const generic=!part.visualSourceSize&&['grip','stock','magazine','laser'].includes(slot);const sourceSize=part.visualSourceSize||(generic?[64,64]:[384,192]);return `<svg x="${x}" y="${y}" width="${w}" height="${h}" viewBox="${bounds.join(' ')}" preserveAspectRatio="xMidYMid meet"><image href="${escape(part.img)}" width="${sourceSize[0]}" height="${sourceSize[1]}"/></svg>`;}

@@ -32,3 +32,5 @@
 .gunsmith-hero{height:180px}
 
 .weapon-mounted-list>span{font-size:7px;gap:1px}.weapon-mounted-list img{width:13px!important;height:13px!important}
+
+#ground-drop-hint{position:fixed;left:50%;bottom:85px;transform:translateX(-50%);z-index:85;border:1px solid #b9b88b;background:#282c21ed;padding:9px 15px;color:#dcd9b2;font-size:12px;pointer-events:none}.ground-drop-active .equipment{outline:1px dashed #989a6d66;outline-offset:-4px}.empty-container-slot{display:flex;flex-direction:column;align-items:center;justify-content:center;border-style:dashed;background:#19231c66}.empty-container-slot>b{font-size:28px;font-weight:normal;color:#7e9682}.empty-container-slot>span{position:static!important;color:#9daf9f!important;font-size:10px!important}.empty-container-note{font-size:10px;color:#6f8676;padding:15px 7px}
