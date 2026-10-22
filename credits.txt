@@ -5,3 +5,5 @@
 物品描述、尺寸、参考价格、容器分格参考：panedioic / delta-force-loot-simulator（Y1yan），https://github.com/panedioic/delta-force-loot-simulator ，Apache License 2.0。
 本作对公开资料做了筛选、字段转换、格位映射及模拟调整。玩法、交互与界面为本项目重新实现。
 模拟价格是固定资料快照，并非实时交易行价格；本作未连接游戏账号、服务器或交易系统。
+
+新增配件图片：playerhub.df.qq.com/playerhub/60004/object/ 的公开物品图；名称、尺寸、重量、参考价格资料来自上述 Apache-2.0 项目的 public/json/acc 与 values.json。二维组合位置及示意兼容配置由本项目实现，不代表原版枪械模型或完整改装规则。
